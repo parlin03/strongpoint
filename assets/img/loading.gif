@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META  -->
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ececec" />
+    <meta name="msapplication-navbutton-color" content="#ececec">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- END META  -->
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153429808-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-153429808-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-53KRC3');
+    </script>
+    <!-- End Google Tag Manager -->
+    <title>Internet Baik</title>
+
+    <!--  CSS  -->
+    <link rel="stylesheet" href="/asset/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/asset/css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="/asset/css/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="/asset/css/splide.min.css"/>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+    </style>
+    <!--  end CSS  -->
+
+    <!-- configuration -->
+    <script>
+        const TIMER_AUTO_SCROLL=10000; //milliseconds
+        const TITLE_WEB="Internet Baik";// For title web
+        // list images
+        // internet baik
+        // mobile bg-header-360.png
+        // desktop bg-header.png
+        // internet tepat
+        // mobile bg-header-tepat-360.png
+        // desktop bg-header-tepat.png
+        const IMG_HEADER="https://internetbaik.telkomsel.com/asset/images/bg-header.png"; // for header image
+    </script>
+    <!-- end configuration -->
+
+</head>
+<body onload="loadTselOndeckAds()">
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-53KRC3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- header -->
+<div class="header loading">
+    <img class="img-header" onload="hasloaded(this)" alt="">
+</div>
+<!-- end header -->
+
+<!-- Container ads, html5, article, breaking news-->
+<div class="container">
+    <!--  ads left  -->
+    <div class="ads-left rw">
+	<div id="ADS_SLOT_1" class="ads">
+        </div><div id="ADS_SLOT_3" class="ads">
+        </div><div id="ADS_SLOT_5" class="ads">
+        </div><div id="ADS_SLOT_7" class="ads">
+        </div><div id="ADS_SLOT_9" class="ads">
+        </div>
+    </div>
+    <!--  end ads left  -->
+
+    <!--  games  -->
+    <div class="games rw">
+        <!-- games -->
+        <p>Games</p>
+        <iframe src="https://internetbaik.telkomsel.com/games/acd19635ac74969cd041/index.html" class="if-games mg-top"></iframe>
+        <!-- end games -->
+
+        <!-- breaking news-->
+        <p class="mg-top">Breaking News</p>
+        <div id="BREAKING_NEWS">
+        </div>
+        <!-- end breaking news-->
+
+        <!-- berita baru-->
+        <p class="mg-top berita-terbaru hide">Artikel Terbaru</p>
+        <div id="NEWS_SLOT_2" class="news mg-top"></div>
+        <!-- end berita baru-->
+
+    </div>
+    <!--  end games  -->
+
+    <!--  ads right  -->
+    <div class="ads-right rw">
+	<div id="ADS_SLOT_2" class="ads">
+        </div><div id="ADS_SLOT_4" class="ads">
+        </div><div id="ADS_SLOT_6" class="ads">
+        </div><div id="ADS_SLOT_8" class="ads">
+        </div><div id="ADS_SLOT_10" class="ads">
+        </div>
+    </div>
+    <!--  end ads right  -->
+
+</div>
+<!-- end Container ads, html5, article, breaking news-->
+
+<footer>
+    <div class="content-footer">
+        <h3 class="txt-contact-us">Hubungi Kami</h3>
+        <h4 class="txt-detail-contact-us">Untuk mendapatkan informasi terkait advertising di internet baik.</h4>
+    </div>
+    <div class="mail-contact-us">
+        <div class="btn-contact-us">
+            <div class="ct">
+                <img src="/asset/images/Email.png"> <span>Contact Us</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2193564669858187"crossorigin="anonymous"></script>
+<script src="/asset/js/jquery-3.6.0.min.js"></script>
+<script src="/asset/js/ads.campaign.js"></script>
+<script src="/asset/js/main.js"></script>
+<script src="/asset/js/news.js"></script>
+<script src="/asset/js/splide.js"></script>
+<!--<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@1.3.3/dist/js/splide.min.js"></script>-->
+
+<script type="text/javascript" src="/asset/js/slick.min.js"></script>
+<script>
+    document.title=TITLE_WEB;
+    $(".img-header").attr("src",IMG_HEADER)
+    function automateScroll(){
+	$("html, body").animate({ scrollTop: 500}, 1000);
+	//$("html, body").animate({ scrollTop: 500}, "slow");
+        //$("html, body").animate({ scrollTop: $(".content-article").offset().top }, "slow");
+    }
+    setTimeout(automateScroll,TIMER_AUTO_SCROLL);
+    // setNewsRSS('https://www.antaranews.com/rss/ekonomi-finansial.xml', 'NEWS_SLOT_2', '1', '1');
+
+    function loadTselOndeckAds(){
+        var odtrace = false;
+var odtrace_req = {};
+CampaignRequestor.setToken('internetbaik');
+CampaignRequestor.setSecret('internetbaik');
+CampaignRequestor.setCmpURL('https://internetbaik.telkomsel.com/adsjson3');
+CampaignRequestor.setClickURL('https://internetbaik.telkomsel.com/adsjson3');
+CampaignRequestor.setViewableURL('https://internetbaik.telkomsel.com/adsjson3');
+var adsReqObj = {};
+adsReqObj = {"id":"1703459572814767","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":86,"at":84,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_1', '/storage/passback/84.js');
+adsReqObj = {"id":"1703459572401028","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":87,"at":85,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_2', '/storage/passback/85.js');
+adsReqObj = {"id":"1703459572641307","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":88,"at":86,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_3', '/storage/passback/86.js');
+adsReqObj = {"id":"1703459572736400","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":89,"at":87,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_4', '/storage/passback/87.js');
+adsReqObj = {"id":"1703459572166956","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":90,"at":88,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_5', '/storage/passback/88.js');
+adsReqObj = {"id":"1703459572904814","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":91,"at":89,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_6', '/storage/passback/89.js');
+adsReqObj = {"id":"1703459572471825","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":92,"at":90,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_7', '/storage/passback/90.js');
+adsReqObj = {"id":"1703459572651652","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":100,"at":120,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_8', '/storage/passback/120.js');
+adsReqObj = {"id":"1703459572569615","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":101,"at":121,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_9', '/storage/passback/121.js');
+adsReqObj = {"id":"1703459572607981","mdn":"628114115005","lac":"37","ci":"999","dmn":1,"lp":104,"at":133,"p":0,"ua":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/120.0.0.0 Safari\/537.36","t":"0","u":"https:\/\/i.imgur.com","s":"300x250","c":"","news_id":0,"pi":""};
+CampaignRequestor.request(adsReqObj, 'ADS_SLOT_10', '/storage/passback/133.js');
+
+    }
+
+    // data news
+	setNewsRSS('https://www.antaranews.com/rss/ekonomi-finansial.xml', 'NEWS_SLOT_2', '2', '1', '');
+/* Array
+(
+    [0] => Array
+        (
+            [img] => https://internetbaik.telkomsel.com/storage/news/20230302135423_1677740063494_small.jpg
+            [title] => Mengenal Qiu Qianren Si Kembar Tapak Besi di Game The Return of Condor Heroes
+            [content] => <p><span style="font-size:12px"><span style="font-family:Poppins">Salah satu pendekar di game RoCH adalah Qiu Qianren. Pendekar ini sempat bertemu dengan Shanguang Jinnan si pendiri asli dari Partai Tapak Besi.</span></span></p>
+
+            [time] => 2023-03-02 13:57:54
+            [url] => https://internetbaik.telkomsel.com/newsdet?u=00000076007600013c29&cp=%7B%22domain%22%3A1%2C%22lac%22%3A%2237%22%2C%22ci%22%3A%22999%22%2C%22msisdn%22%3A%22628114115005%22%2C%22ua%22%3A%22Mozilla%5C%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%5C%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%5C%2F120.0.0.0+Safari%5C%2F537.36%22%2C%22url_accessed%22%3A%22https%3A%5C%2F%5C%2Fi.imgur.com%22%2C%22category%22%3A%22%22%7D
+        )
+
+    [1] => Array
+        (
+            [img] => https://internetbaik.telkomsel.com/storage/news/20230302040941_1677704981969_small.png
+            [title] => Bisnis Telkom Terus Tumbuh, Pendapatan Tembus Rp.72 Triliun
+            [content] => <p><span style="font-size:12px"><span style="font-family:Poppins">PT Telkom Indonesia (Persero) Tbk (Telkom) berhasil mencatatkan pendapatan konsolidasi sebesar Rp72 triliun pada paruh pertama tahun 2022 atau naik 3,6 persen dibanding periode yang sama di tahun lalu.</span></span></p>
+
+            [time] => 2023-03-02 04:13:30
+            [url] => https://internetbaik.telkomsel.com/newsdet?u=000000740074000113c5&cp=%7B%22domain%22%3A1%2C%22lac%22%3A%2237%22%2C%22ci%22%3A%22999%22%2C%22msisdn%22%3A%22628114115005%22%2C%22ua%22%3A%22Mozilla%5C%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%5C%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%5C%2F120.0.0.0+Safari%5C%2F537.36%22%2C%22url_accessed%22%3A%22https%3A%5C%2F%5C%2Fi.imgur.com%22%2C%22category%22%3A%22%22%7D
+        )
+
+)
+ */
+let data = [{"img":"https:\/\/internetbaik.telkomsel.com\/storage\/news\/20230302135423_1677740063494_small.jpg","title":"Mengenal Qiu Qianren Si Kembar Tapak Besi di Game The Return of Condor Heroes","content":"<p><span style=\"font-size:12px\"><span style=\"font-family:Poppins\">Salah satu pendekar di game RoCH adalah Qiu Qianren. Pendekar ini sempat bertemu dengan Shanguang Jinnan si pendiri asli dari Partai Tapak Besi.<\/span><\/span><\/p>\r\n","time":"2023-03-02 13:57:54","url":"https:\/\/internetbaik.telkomsel.com\/newsdet?u=00000076007600013c29&cp=%7B%22domain%22%3A1%2C%22lac%22%3A%2237%22%2C%22ci%22%3A%22999%22%2C%22msisdn%22%3A%22628114115005%22%2C%22ua%22%3A%22Mozilla%5C%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%5C%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%5C%2F120.0.0.0+Safari%5C%2F537.36%22%2C%22url_accessed%22%3A%22https%3A%5C%2F%5C%2Fi.imgur.com%22%2C%22category%22%3A%22%22%7D"},{"img":"https:\/\/internetbaik.telkomsel.com\/storage\/news\/20230302040941_1677704981969_small.png","title":"Bisnis Telkom Terus Tumbuh, Pendapatan Tembus Rp.72 Triliun","content":"<p><span style=\"font-size:12px\"><span style=\"font-family:Poppins\">PT Telkom Indonesia (Persero) Tbk (Telkom) berhasil mencatatkan pendapatan konsolidasi sebesar Rp72 triliun pada paruh pertama tahun 2022 atau naik 3,6 persen dibanding periode yang sama di tahun lalu.<\/span><\/span><\/p>\r\n","time":"2023-03-02 04:13:30","url":"https:\/\/internetbaik.telkomsel.com\/newsdet?u=000000740074000113c5&cp=%7B%22domain%22%3A1%2C%22lac%22%3A%2237%22%2C%22ci%22%3A%22999%22%2C%22msisdn%22%3A%22628114115005%22%2C%22ua%22%3A%22Mozilla%5C%2F5.0+%28Windows+NT+10.0%3B+Win64%3B+x64%29+AppleWebKit%5C%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%5C%2F120.0.0.0+Safari%5C%2F537.36%22%2C%22url_accessed%22%3A%22https%3A%5C%2F%5C%2Fi.imgur.com%22%2C%22category%22%3A%22%22%7D"}];
+
+    var news = new News("BREAKING_NEWS",data);
+    news.on('success',function (){
+        console.log('success news')
+        var splide = new Splide( '.splide', {
+            type   : 'loop',
+            padding: '35px',
+        });
+        splide.mount();
+    });
+    news.inisiate();
+
+
+</script>
+</body>
+</html>
