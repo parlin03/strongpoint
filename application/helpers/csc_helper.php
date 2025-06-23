@@ -20,7 +20,7 @@ function is_logged_in()
 
 
 
-        $queryMenu = $ci->db->get_where('user_menu', ['uri' => $uri])->row_array();
+        $queryMenu = $ci->db->get_where('user_sub_menu', ['url' => $uri])->row_array();
         // $queryMenu = $ci->db->get_where('user_sub_menu', ['url' => $uri])->row_array();
         $menu_id = $queryMenu['id'];
 

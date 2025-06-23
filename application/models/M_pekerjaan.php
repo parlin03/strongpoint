@@ -1,19 +1,28 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Bpum_model extends CI_Model
+class M_pekerjaan extends CI_Model
 {
     //set nama tabel yang akan kita tampilkan datanya
-    var $table = 'tbl_bpum';
+    var $table = 'list_pekerjaan';
     //set kolom order, kolom pertama saya null untuk kolom edit dan hapus
     var $column_order = array(
-        null, 'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'status', 'jenis_kelamin',
-        'alamat', 'rt', 'rw', 'tps', 'kecamatan', 'kelurahan', 'nohp', 'periode'
+        null,
+        'pekerjaan',
+        'jenis_pekerjaan',
+        'pagu_anggaran',
+        'opd',
+        'rekanan',
+        'status'
     );
 
     var $column_search = array(
-        'nik', 'nama', 'tempat_lahir', 'tanggal_lahir', 'status', 'jenis_kelamin',
-        'alamat', 'rt', 'rw', 'tps', 'kecamatan', 'kelurahan', 'nohp', 'periode'
+        'pekerjaan',
+        'jenis_pekerjaan',
+        'pagu_anggaran',
+        'opd',
+        'rekanan',
+        'status'
     );
     // default order 
     var $order = array('id' => 'asc');
@@ -78,20 +87,20 @@ class Bpum_model extends CI_Model
     ##########################################
     public function getDataGraph()
     {
-        $this->db->select('kecamatan, count(id) as total');
+        $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
         $this->db->from($this->table);
-        $this->db->group_by('kecamatan');
+        $this->db->group_by('pekerjaan');
         $query = $this->db->get();
         return $query->result();
     }
 
     public function getDataSummary()
     {
-        $this->db->select('tbl_bpum.kecamatan, count(id) as total');
+        $this->db->select('list_pekerjaan.pekerjaan, sum(pagu_anggaran) as total');
         $this->db->from($this->table);
-        $this->db->join('kec', 'kec.namakec=tbl_bpum.kecamatan');
-        $this->db->group_by('tbl_bpum.kecamatan');
-        $this->db->order_by('idkec');
+        $this->db->join('pekerjaan', 'pekerjaan.pekerjaan=list_pekerjaan.pekerjaan');
+        $this->db->group_by('list_pekerjaan.pekerjaan');
+        $this->db->order_by('pekerjaan.id');
         $query = $this->db->get();
         return $query->result();
     }
@@ -123,7 +132,7 @@ class Bpum_model extends CI_Model
 
     public function getDataExport($kec)
     {
-        $this->db->where('kecamatan', $kec);
+        $this->db->where('pekerjaan', $kec);
         return $this->db->get($this->table)->result_array();
     }
 }

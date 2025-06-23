@@ -39,7 +39,7 @@
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered table-striped table-hover text-dark  ">
                                                                 <thead class="text-center">
-                                                                    <th class="border">Kecamatan</th>
+                                                                    <th class="border">Pekerjaan</th>
                                                                     <th class="border">Jumlah</th>
                                                                     <!-- <th class="border">REKOMENDASI</th> -->
                                                                     <!-- <th class="border">Action</th> -->
@@ -59,17 +59,30 @@
                                                                     foreach ($summary as $row) : ?>
                                                                         <tr class="text-center">
 
-                                                                            <td class="border"><a href="<?= base_url('program/bpum/kec/') . strtolower($row->kecamatan); ?>"><?= $row->kecamatan; ?></a></td>
-                                                                            <td class="border"><?= $row->total; ?></td>
+                                                                            <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
+                                                                            <td class="border"><?= "Rp " . number_format("$row->total", 2, ",", "."); ?></td>
+
                                                                         </tr>
                                                                         <?php $jtotal += $row->total; ?>
                                                                     <?php endforeach; ?>
+                                                                    <?php
+                                                                    $pajak = $jtotal * 12.5 / 100;
+                                                                    $real_cost = $jtotal - $pajak;
+                                                                    ?>
 
                                                                 </tbody>
                                                                 <tfoot>
                                                                     <tr class="text-center">
                                                                         <th class="border">Total</th>
-                                                                        <th class="border"><?= $jtotal; ?></th>
+                                                                        <th class="border"><?= "Rp " . number_format("$jtotal", 2, ",", "."); ?></th>
+                                                                    </tr>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Pajak</th>
+                                                                        <th class="border"><?= "Rp " . number_format("$pajak", 2, ",", "."); ?></th>
+                                                                    </tr>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Real Cost</th>
+                                                                        <th class="border"><?= "Rp " . number_format("$real_cost", 2, ",", "."); ?></th>
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
@@ -100,20 +113,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>NIK</th>
-                                        <th>NAMA</th>
-                                        <th>TMPTLHR</th>
-                                        <th>TGLLHR</th>
-                                        <th>STATUS</th>
-                                        <th>JENIS_KELAMIN</th>
-                                        <th>ALAMAT</th>
-                                        <th>RT</th>
-                                        <th>RW</th>
-                                        <th>TPS</th>
-                                        <th>KECAMATAN</th>
-                                        <th>KEL/DESA</th>
-                                        <th>NOMOR HP</th>
-                                        <th>PERIODE</th>
+                                        <th>pekerjaan</th>
+                                        <th>jenis_pekerjaan</th>
+                                        <th>pagu_anggaran</th>
+                                        <th>opd</th>
+                                        <th>rekanan</th>
+                                        <th>status</th>
 
                                     </tr>
                                 </thead>
@@ -177,7 +182,7 @@
                 enabled: false
             },
             title: {
-                text: 'Sebaran BPUM UMKM Makassar Timur'
+                text: 'Sebaran Pekerjaan'
             },
             tooltip: {
                 formatter: function() {
@@ -206,7 +211,7 @@
             }]
         }
 
-        $.getJSON("<?php echo site_url('program/bpum/Graph_list'); ?>", function(json) {
+        $.getJSON("<?php echo site_url('pekerjaan/Graph_list'); ?>", function(json) {
             options.series[0].data = json;
             chart = new Highcharts.Chart(options);
         });
@@ -225,7 +230,7 @@
             "order": [],
             "ajax": {
                 //panggil method ajax list dengan ajax
-                "url": 'ajax_list',
+                "url": 'pekerjaan/ajax_list',
                 "type": "POST"
             },
             "buttons": [{
