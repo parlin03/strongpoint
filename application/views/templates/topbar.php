@@ -63,7 +63,7 @@
          </li>
          <!-- Nav Item - User Information -->
          <li class="nav-item dropdown">
-             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             <a class="nav-link dropdown-toggle" href="" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                  <img src="<?= base_url('assets/img/profile/') . $user['image'] ?>" class="img-circle elevation-2" alt="User Image" style="height:24px;width:24px">
                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $user['name']; ?></span>
              </a>

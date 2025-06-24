@@ -53,9 +53,13 @@
                                             <h5 class="card-title"><?= $user['name']; ?></h5>
                                         </span>
                                         <span class="info-box-text"><?= $user['email']; ?></span>
-                                        <span class="info-box-text">
-                                            <small class="text-muted">Member since <?= date('d F Y', $user['date_created']); ?></small>
-                                        </span>
+                                        <!-- <span class="info-box-text">
+                                            <?
+                                            // $new_date = date_format(date_create($user['date_created']), 'Y-m-d');
+                                            // date('d F Y', $user['date_created']);
+                                            ?>
+                                            <small class="text-muted">Member since <?= $new_date; ?></small>
+                                        </span> -->
                                     </div>
                                     <!-- /.info-box-content -->
                                 </div>

@@ -60,7 +60,7 @@
                                                                         <tr class="text-center">
 
                                                                             <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
-                                                                            <td class="border"><?= "Rp " . number_format("$row->total", 2, ",", "."); ?></td>
+                                                                            <td class="border"><?= "Rp " . number_format("$row->total", 0, ",", "."); ?></td>
 
                                                                         </tr>
                                                                         <?php $jtotal += $row->total; ?>
@@ -74,15 +74,15 @@
                                                                 <tfoot>
                                                                     <tr class="text-center">
                                                                         <th class="border">Total</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$jtotal", 2, ",", "."); ?></th>
+                                                                        <th class="border"><?= "Rp " . number_format("$jtotal", 0, ",", "."); ?></th>
                                                                     </tr>
                                                                     <tr class="text-center">
                                                                         <th class="border">Pajak</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$pajak", 2, ",", "."); ?></th>
+                                                                        <th class="border"><?= "Rp " . number_format("$pajak", 0, ",", "."); ?></th>
                                                                     </tr>
                                                                     <tr class="text-center">
                                                                         <th class="border">Real Cost</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$real_cost", 2, ",", "."); ?></th>
+                                                                        <th class="border"><?= "Rp " . number_format("$real_cost", 0, ",", "."); ?></th>
                                                                     </tr>
                                                                 </tfoot>
                                                             </table>
@@ -113,12 +113,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>pekerjaan</th>
-                                        <th>jenis_pekerjaan</th>
-                                        <th>pagu_anggaran</th>
-                                        <th>opd</th>
-                                        <th>rekanan</th>
-                                        <th>status</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Jenis Pekerjaan</th>
+                                        <th>Pagu Anggaran</th>
+                                        <th>OPD</th>
+                                        <th>Rekanan</th>
+                                        <th>Status</th>
 
                                     </tr>
                                 </thead>

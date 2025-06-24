@@ -21,7 +21,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-          
+
             <div class="row">
                 <div class="col-12">
                     <div class="card">
@@ -34,12 +34,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>pekerjaan</th>
-                                        <th>jenis_pekerjaan</th>
-                                        <th>pagu_anggaran</th>
-                                        <th>opd</th>
-                                        <th>rekanan</th>
-                                        <th>status</th>
+                                        <th>Rekanan</th>
+                                        <th>Bidang</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Keterangan</th>
+                                        <th>PIC</th>
+                                        <th>Induk</th>
 
                                     </tr>
                                 </thead>

@@ -1,51 +1,55 @@
 <?php
 
 use LDAP\Result;
+use phpDocumentor\Reflection\Types\This;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pekerjaan extends CI_Controller
+class Rekanan_test extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        is_logged_in();
+        // is_logged_in();
         $this->load->library('session');
-        $this->load->model('M_pekerjaan', 'pekerjaan_model');
+        $this->load->model('M_rekanan_test', 'rekanan_model');
     }
 
 
     public function Index()
     {
         $data['menu'] = 'Daftar ';
-        $data['title'] = 'Pekerjaan';
+        $data['title'] = 'Rekanan';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+        $data['induk'] = $this->db->select('id,induk')->from('rekanan')->group_by('induk')->get()->result();
+        // $data['summary'] = $this->rekanan_model->getDataSummary();
 
-        $data['summary'] = $this->pekerjaan_model->getDataSummary();
-
+        // var_dump($data['induk']);
+        // die;
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
         $this->load->view('templates/topbar', $data);
-        $this->load->view('v_pekerjaan', $data);
+        $this->load->view('v_rekanan', $data);
         $this->load->view('templates/footer');
     }
 
     public function Graph_list()
     {
-        $graph = $this->pekerjaan_model->getDataGraph();
+        $graph = $this->rekanan_model->getDataGraph();
 
         $rows = array();
         foreach ($graph as $d) {
-            array_push($rows, array($d->pekerjaan, $d->total));
+            array_push($rows, array($d->rekanan, $d->total));
         }
 
         print json_encode($rows, JSON_NUMERIC_CHECK);
     }
 
-    public function ajax_list()
+    public function ajax_list($utama)
     {
         header('Content-Type: application/json');
-        $list = $this->pekerjaan_model->get_datatables();
+        $induk = 'PT. Sulsel Sengkang Energi';
+        $list = $this->rekanan_model->get_datatables($induk);
         $data = array();
         $no = $this->input->post('start');
         //looping data mahasiswa
@@ -54,19 +58,18 @@ class Pekerjaan extends CI_Controller
             $row = array();
             //row pertama akan kita gunakan untuk btn edit dan delete
             $row[] =  $no;
-            $row[] = $list->pekerjaan;
-            $row[] = $list->jenis_pekerjaan;
-            $row[] = "Rp " . number_format("$list->pagu_anggaran", 0, ",", ".");
-            $row[] = $list->opd;
             $row[] = $list->rekanan;
-            $row[] = $list->status;
-
+            $row[] = $list->bidang;
+            $row[] = $list->pekerjaan;
+            $row[] = $list->keterangan;
+            $row[] = $list->pic;
+            $row[] = $list->induk;
             $data[] = $row;
         }
         $output = array(
             "draw" => $this->input->post('draw'),
-            "recordsTotal" => $this->pekerjaan_model->count_all(),
-            "recordsFiltered" => $this->pekerjaan_model->count_filtered(),
+            "recordsTotal" => $this->rekanan_model->count_all(),
+            "recordsFiltered" => $this->rekanan_model->count_filtered(),
             "data" => $data,
         );
         //output to json format
@@ -79,7 +82,7 @@ class Pekerjaan extends CI_Controller
     {
         $data['kec'] = $this->session->flashdata('kec');
 
-        $graph = $this->pekerjaan_model->getDataGraphKec($data['kec']);
+        $graph = $this->rekanan_model->getDataGraphKec($data['kec']);
 
         $rows = array();
         foreach ($graph as $d) {
