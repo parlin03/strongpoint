@@ -19,123 +19,44 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <!-- <section class="content">
+    <section class="content">
         <div class="container-fluid">
+          
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <div class="row ">
-                                <div class="container" style="margin-top:20px">
-                                    <div>
-                                        <div class="panel panel-primary">
-                                            <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-8">
-
-                                                        <div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered table-striped table-hover text-dark  ">
-                                                                <thead class="text-center">
-                                                                    <th class="border">Pekerjaan</th>
-                                                                    <th class="border">Jumlah</th>
-                                                                    <!-- <th class="border">REKOMENDASI</th> -->
-    <!-- <th class="border">Action</th> -->
-    </thead>
-    <tbody>
-        <?php if (empty($summary)) : ?>
-            <tr>
-                <td colspan="7">
-                    <div class="alert alert-danger" role="alert">
-                        data not found!
-                    </div>
-                </td>
-            </tr>
-        <?php endif; ?>
-        <?php
-        $jtotal = 0;
-        foreach ($summary as $row) : ?>
-            <tr class="text-center">
-
-                <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
-                <td class="border"><?= "Rp " . number_format("$row->total", 2, ",", "."); ?></td>
-
-            </tr>
-            <?php $jtotal += $row->total; ?>
-        <?php endforeach; ?>
-        <?php
-        $pajak = $jtotal * 12.5 / 100;
-        $real_cost = $jtotal - $pajak;
-        ?>
-
-    </tbody>
-    <tfoot>
-        <tr class="text-center">
-            <th class="border">Total</th>
-            <th class="border"><?= "Rp " . number_format("$jtotal", 2, ",", "."); ?></th>
-        </tr>
-        <tr class="text-center">
-            <th class="border">Pajak</th>
-            <th class="border"><?= "Rp " . number_format("$pajak", 2, ",", "."); ?></th>
-        </tr>
-        <tr class="text-center">
-            <th class="border">Real Cost</th>
-            <th class="border"><?= "Rp " . number_format("$real_cost", 2, ",", "."); ?></th>
-        </tr>
-    </tfoot>
-    </table>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- /.card -->
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <!-- <div class="card-header">
+                        <!-- <div class="card-header">
                                     <h3 class="card-title">DataTable with default features</h3>
                                 </div> -->
-            <!-- /.card-header -->
-            <div class="card-body">
-                <table id="tabeljaringbpum" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>pekerjaan</th>
-                            <th>jenis_pekerjaan</th>
-                            <th>pagu_anggaran</th>
-                            <th>opd</th>
-                            <th>rekanan</th>
-                            <th>status</th>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="tabeljaringbpum" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>pekerjaan</th>
+                                        <th>jenis_pekerjaan</th>
+                                        <th>pagu_anggaran</th>
+                                        <th>opd</th>
+                                        <th>rekanan</th>
+                                        <th>status</th>
 
-                        </tr>
-                    </thead>
+                                    </tr>
+                                </thead>
 
 
-                </table>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
             </div>
-            <!-- /.card-body -->
-        </div>
-        <!-- /.card -->
-    </div>
-    <!-- /.col -->
-</div>
-<!-- /.row -->
-</div><!--/. container-fluid -->
-</section> -->
-<!-- /.content -->
+            <!-- /.row -->
+        </div><!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 
