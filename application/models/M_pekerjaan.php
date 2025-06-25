@@ -85,7 +85,7 @@ class M_pekerjaan extends CI_Model
         return $this->db->count_all_results();
     }
     ##########################################
-    public function getDataGraph()
+    public function getDataGraphPekerjaan()
     {
         $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
         $this->db->from($this->table);
@@ -94,13 +94,34 @@ class M_pekerjaan extends CI_Model
         return $query->result();
     }
 
-    public function getDataSummary()
+    public function getDataSummaryPekerjaan()
     {
-        $this->db->select('list_pekerjaan.pekerjaan, sum(pagu_anggaran) as total');
+        $this->db->select('pekerjaan.pekerjaan, sum(pagu_anggaran) as total');
         $this->db->from($this->table);
         $this->db->join('pekerjaan', 'pekerjaan.pekerjaan=list_pekerjaan.pekerjaan');
         $this->db->group_by('list_pekerjaan.pekerjaan');
         $this->db->order_by('pekerjaan.id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataGraphRekanan()
+    {
+        $this->db->select('rekanan, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        $this->db->group_by('rekanan');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataSummaryRekanan()
+    {
+        $this->db->select('rekanan, sum(pagu_anggaran) as total, 
+        (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
+        $this->db->from($this->table);
+        // $this->db->join('rekanan', 'rekanan.rekanan=list_pekerjaan.rekanan');
+        $this->db->group_by('rekanan');
+        $this->db->order_by('id');
         $query = $this->db->get();
         return $query->result();
     }

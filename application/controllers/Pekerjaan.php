@@ -21,7 +21,7 @@ class Pekerjaan extends CI_Controller
         $data['title'] = 'Pekerjaan';
         $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
-        $data['summary'] = $this->pekerjaan_model->getDataSummary();
+        $data['summary'] = $this->pekerjaan_model->getDataSummaryPekerjaan();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar', $data);
@@ -32,7 +32,7 @@ class Pekerjaan extends CI_Controller
 
     public function Graph_list()
     {
-        $graph = $this->pekerjaan_model->getDataGraph();
+        $graph = $this->pekerjaan_model->getDataGraphPekerjaan();
 
         $rows = array();
         foreach ($graph as $d) {
