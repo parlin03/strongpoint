@@ -30,65 +30,65 @@
                                     <div>
                                         <div class="panel panel-primary">
                                             <div class="panel-body">
-                                                <div class="row">
-                                                    <div class="col-md-8">
-
-                                                        <div id="graphPekerjaan" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered table-striped table-hover text-dark  ">
-                                                                <thead class="text-center">
-                                                                    <th class="border">Pekerjaan</th>
-                                                                    <th class="border">Jumlah</th>
-                                                                    <!-- <th class="border">REKOMENDASI</th> -->
-                                                                    <!-- <th class="border">Action</th> -->
-                                                                </thead>
-                                                                <tbody>
-                                                                    <?php if (empty($summaryPekerjaan)) : ?>
-                                                                        <tr>
-                                                                            <td colspan="7">
-                                                                                <div class="alert alert-danger" role="alert">
-                                                                                    data not found!
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    <?php endif; ?>
-                                                                    <?php
-                                                                    $jtotal = 0;
-                                                                    foreach ($summaryPekerjaan as $row) : ?>
-                                                                        <tr class="text-center">
-
-                                                                            <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
-                                                                            <td class="border"><?= "Rp " . number_format("$row->total", 0, ",", "."); ?></td>
-
-                                                                        </tr>
-                                                                        <?php $jtotal += $row->total; ?>
-                                                                    <?php endforeach; ?>
-                                                                    <?php
-                                                                    $pajak = $jtotal * 12.5 / 100;
-                                                                    $real_cost = $jtotal - $pajak;
-                                                                    ?>
-
-                                                                </tbody>
-                                                                <tfoot>
-                                                                    <tr class="text-center">
-                                                                        <th class="border">Total</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$jtotal", 0, ",", "."); ?></th>
+                                                <!-- <div class="row"> -->
+                                                <!-- <div class="col-md-8"> -->
+                                                <div class="chart">
+                                                    <div id="graphPekerjaan" style=" height: 480px;max-width: 100%; margin: 0 auto"></div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover text-dark  ">
+                                                            <thead class="text-center">
+                                                                <th class="border">Pekerjaan</th>
+                                                                <th class="border">Jumlah</th>
+                                                                <!-- <th class="border">REKOMENDASI</th> -->
+                                                                <!-- <th class="border">Action</th> -->
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php if (empty($summaryPekerjaan)) : ?>
+                                                                    <tr>
+                                                                        <td colspan="7">
+                                                                            <div class="alert alert-danger" role="alert">
+                                                                                data not found!
+                                                                            </div>
+                                                                        </td>
                                                                     </tr>
+                                                                <?php endif; ?>
+                                                                <?php
+                                                                $jtotal = 0;
+                                                                foreach ($summaryPekerjaan as $row) : ?>
                                                                     <tr class="text-center">
-                                                                        <th class="border">Pajak</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$pajak", 0, ",", "."); ?></th>
+
+                                                                        <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
+                                                                        <td class="border"><?= "Rp " . number_format("$row->total", 0, ",", "."); ?></td>
+
                                                                     </tr>
-                                                                    <tr class="text-center">
-                                                                        <th class="border">Real Cost</th>
-                                                                        <th class="border"><?= "Rp " . number_format("$real_cost", 0, ",", "."); ?></th>
-                                                                    </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div>
+                                                                    <?php $jtotal += $row->total; ?>
+                                                                <?php endforeach; ?>
+                                                                <?php
+                                                                $pajak = $jtotal * 12.5 / 100;
+                                                                $real_cost = $jtotal - $pajak;
+                                                                ?>
+
+                                                            </tbody>
+                                                            <tfoot>
+                                                                <tr class="text-center">
+                                                                    <th class="border">Total</th>
+                                                                    <th class="border"><?= "Rp " . number_format("$jtotal", 0, ",", "."); ?></th>
+                                                                </tr>
+                                                                <tr class="text-center">
+                                                                    <th class="border">Pajak</th>
+                                                                    <th class="border"><?= "Rp " . number_format("$pajak", 0, ",", "."); ?></th>
+                                                                </tr>
+                                                                <tr class="text-center">
+                                                                    <th class="border">Real Cost</th>
+                                                                    <th class="border"><?= "Rp " . number_format("$real_cost", 0, ",", "."); ?></th>
+                                                                </tr>
+                                                            </tfoot>
+                                                        </table>
                                                     </div>
                                                 </div>
+                                                <!-- </div> -->
                                             </div>
                                         </div>
                                     </div>
