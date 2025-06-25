@@ -33,7 +33,7 @@
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="chart">
-                                                            <div id="graphPekerjaan" style=" height: 480px; max-width: 100%; margin: 0 auto"></div>
+                                                            <div id="graphPekerjaan" style=" max-width: 100%; margin: 0 auto"></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -115,7 +115,7 @@
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="chart">
-                                                            <div id="graphOpd" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                            <div id="graphOpd" style=" max-width: 100%; margin: 0 auto"></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
@@ -197,7 +197,7 @@
                                                 <div class="row">
                                                     <div class="col-md-8">
                                                         <div class="chart">
-                                                            <div id="graphRekanan" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                            <div id="graphRekanan" style="max-width: 100%; margin: 0 auto"></div>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4">
