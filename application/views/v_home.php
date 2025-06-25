@@ -101,6 +101,88 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row ">
+                                <div class="container" style="margin-top:20px">
+                                    <div>
+                                        <div class="panel panel-primary">
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                    <div class="col-md-8">
+
+                                                        <div id="graphOpd" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-bordered table-striped table-hover text-dark  ">
+                                                                <thead class="text-center">
+                                                                    <th class="border">Opd</th>
+                                                                    <th class="border">Jumlah</th>
+                                                                    <!-- <th class="border">REKOMENDASI</th> -->
+                                                                    <!-- <th class="border">Action</th> -->
+                                                                </thead>
+                                                                <tbody>
+                                                                    <?php if (empty($summaryOpd)) : ?>
+                                                                        <tr>
+                                                                            <td colspan="7">
+                                                                                <div class="alert alert-danger" role="alert">
+                                                                                    data not found!
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                    <?php endif; ?>
+                                                                    <?php
+                                                                    $jtotal = 0;
+                                                                    foreach ($summaryOpd as $row) : ?>
+                                                                        <?php $jtotal += $row->total; ?>
+                                                                        <tr class="text-center">
+
+                                                                            <td class="border"><a href="<?= base_url('pekerjaan/') . strtolower($row->opd); ?>"><?= $row->opd; ?></a></td>
+                                                                            <td class="border"><?= "Rp " . number_format("$row->total", 0, ",", ".") . " (" . number_format("$row->percentage", 2, ",", ".") . "%)"; ?></td>
+
+                                                                        </tr>
+                                                                    <?php endforeach; ?>
+                                                                    <?php
+                                                                    $pajak = $jtotal * 12.5 / 100;
+                                                                    $real_cost = $jtotal - $pajak;
+                                                                    ?>
+
+                                                                </tbody>
+                                                                <tfoot>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Total</th>
+                                                                        <th class="border"><?= "Rp " . number_format("$jtotal", 0, ",", "."); ?></th>
+                                                                    </tr>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Pajak</th>
+                                                                        <th class="border"><?= "Rp " . number_format("$pajak", 0, ",", "."); ?></th>
+                                                                    </tr>
+                                                                    <tr class="text-center">
+                                                                        <th class="border">Real Cost</th>
+                                                                        <th class="border"><?= "Rp " . number_format("$real_cost", 0, ",", "."); ?></th>
+                                                                    </tr>
+                                                                </tfoot>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -181,6 +263,7 @@
                 <!-- /.col -->
             </div>
             <!-- /.row -->
+
         </div><!--/. container-fluid -->
     </section>
     <!-- /.content -->
@@ -260,6 +343,56 @@
         }
 
         $.getJSON("<?php echo site_url('home/pekerjaan_list'); ?>", function(json) {
+            options.series[0].data = json;
+            chart = new Highcharts.Chart(options);
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var options = {
+            chart: {
+                renderTo: 'graphOpd',
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            accessibility: {
+                enabled: false
+            },
+            title: {
+                text: 'Sebaran Pagu Anggaran OPD'
+            },
+            tooltip: {
+                formatter: function() {
+                    return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: 'green',
+                        formatter: function() {
+                            return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
+                        }
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                data: []
+            }]
+        }
+
+        $.getJSON("<?php echo site_url('home/opd_list'); ?>", function(json) {
             options.series[0].data = json;
             chart = new Highcharts.Chart(options);
         });

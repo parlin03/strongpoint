@@ -22,6 +22,7 @@ class Home extends CI_Controller
 
         $data['summaryPekerjaan'] = $this->pekerjaan_model->getDataSummaryPekerjaan();
         $data['summaryRekanan'] = $this->pekerjaan_model->getDataSummaryRekanan();
+        $data['summaryOpd'] = $this->pekerjaan_model->getDataSummaryOpd();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/topbar', $data);
@@ -37,6 +38,18 @@ class Home extends CI_Controller
         $rows = array();
         foreach ($graph as $d) {
             array_push($rows, array($d->pekerjaan, $d->total));
+        }
+
+        print json_encode($rows, JSON_NUMERIC_CHECK);
+    }
+
+    public function opd_list()
+    {
+        $graph = $this->pekerjaan_model->getDataGraphOpd();
+
+        $rows = array();
+        foreach ($graph as $d) {
+            array_push($rows, array($d->opd, $d->total));
         }
 
         print json_encode($rows, JSON_NUMERIC_CHECK);

@@ -105,6 +105,27 @@ class M_pekerjaan extends CI_Model
         return $query->result();
     }
 
+    public function getDataGraphOpd()
+    {
+        $this->db->select('opd, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        $this->db->group_by('opd');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataSummaryOpd()
+    {
+        $this->db->select('opd, sum(pagu_anggaran) as total, 
+        (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
+        $this->db->from($this->table);
+        // $this->db->join('opd', 'opd.opd=list_pekerjaan.opd');
+        $this->db->group_by('opd');
+        $this->db->order_by('id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function getDataGraphRekanan()
     {
         $this->db->select('rekanan, sum(pagu_anggaran) as total');
