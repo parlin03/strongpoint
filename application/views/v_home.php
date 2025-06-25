@@ -122,7 +122,7 @@
                                                         <div class="table-responsive">
                                                             <table class="table table-bordered table-striped table-hover text-dark  ">
                                                                 <thead class="text-center">
-                                                                    <th class="border">Opd</th>
+                                                                    <th class="border">OPD</th>
                                                                     <th class="border">Jumlah</th>
                                                                     <!-- <th class="border">REKOMENDASI</th> -->
                                                                     <!-- <th class="border">Action</th> -->
