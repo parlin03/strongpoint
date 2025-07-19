@@ -3,7 +3,7 @@
 	<!-- Brand Logo -->
 	<a href="<?= base_url('home'); ?>" class="brand-link ">
 		<div class="sidebar-brand-icon rotate-n-15">
-			<!-- <img src="<?= base_url('assets/img/favicon.ico') ?>" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
+			<img src="<?= base_url('assets/img/AdminLTELogo.png') ?>" alt="Strong Point" class="brand-image img-circle elevation-3" style="opacity: .8">
 		</div>
 		<span class="brand-text   mx-2">Strong Point</span>
 	</a>
