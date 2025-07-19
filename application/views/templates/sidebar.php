@@ -127,7 +127,7 @@
 							<i class="fas fa-building fa-fw"></i>
 							<span>OPD</span></a>
 
-						<?php $list_opd = $this->db->query("SELECT opd FROM `opd` GROUP by opd")->result_array(); ?>
+						<?php $list_opd = $this->db->query("SELECT opd FROM `opd` GROUP by opd order by id")->result_array(); ?>
 						<?php foreach ($list_opd as $o) : ?>
 							<ul class="nav nav-treeview  nav-child-indent">
 								<li class="nav-item ">
