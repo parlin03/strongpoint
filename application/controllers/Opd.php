@@ -4,7 +4,7 @@ use LDAP\Result;
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class opd extends CI_Controller
+class Opd extends CI_Controller
 {
 	public function __construct()
 	{
