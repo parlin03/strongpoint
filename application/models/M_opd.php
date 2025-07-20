@@ -53,12 +53,8 @@ class M_opd extends CI_Model
 	private function _get_datatables_query()
 	{
 		$fwhere = array('opd' => urldecode($this->session->flashdata('opd')));
-		// $where = array('opd' => $this->session->flashdata('opd')); //set kolom yang akan diurutkan
 		$this->db->from($this->table);
-		// $fwhere = array('opd' => 'dinas bmbk');
 		$this->db->where($fwhere); //gunakan where untuk filter berdasarkan opd yang di session
-		// $this->db->where($where); //gunakan where untuk filter berdasarkan opd yang di session
-		// $this->db->where('opd', $opd);
 
 		$i = 0;
 		foreach ($this->column_search as $item) // loop kolom 
@@ -137,5 +133,66 @@ class M_opd extends CI_Model
 
 
 	####################################################################
+	 public function getDataGraphPekerjaan()
+    {
+        $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        $this->db->group_by('pekerjaan');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataSummaryPekerjaan()
+    {
+        $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        // $this->db->join('pekerjaan', 'pekerjaan.pekerjaan=list_pekerjaan.pekerjaan');
+        $this->db->group_by('pekerjaan');
+        $this->db->order_by('id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataGraphOpd()
+    {
+        $this->db->select('opd, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        $this->db->group_by('opd');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataSummaryOpd()
+    {
+        $this->db->select('opd, sum(pagu_anggaran) as total, 
+        (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
+        $this->db->from($this->table);
+        // $this->db->join('opd', 'opd.opd=list_pekerjaan.opd');
+        $this->db->group_by('opd');
+        $this->db->order_by('id');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataGraphPerusahaan()
+    {
+        $this->db->select('perusahaan, sum(pagu_anggaran) as total');
+        $this->db->from($this->table);
+        $this->db->group_by('perusahaan');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getDataSummaryPerusahaan()
+    {
+        $this->db->select('perusahaan, sum(pagu_anggaran) as total, 
+        (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
+        $this->db->from($this->table);
+        // $this->db->join('perusahaan', 'perusahaan.perusahaan=list_pekerjaan.perusahaan');
+        $this->db->group_by('perusahaan');
+        $this->db->order_by('id');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 }

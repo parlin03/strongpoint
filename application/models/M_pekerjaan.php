@@ -149,32 +149,5 @@ class M_pekerjaan extends CI_Model
 
 
 
-    ####################################################################
-    public function getDataGraphKec($kec)
-    {
-        $this->db->select('kelurahan, count(id) as total');
-        $this->db->from($this->table);
-        $this->db->where('kecamatan', $kec);
-        $this->db->group_by('kelurahan');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function getDataSummaryKec($kec)
-    {
-        $this->db->select('kel.namakel, count(tbl_bpum.id) as total');
-        $this->db->from($this->table);
-        $this->db->join('kel', 'kel.namakel=tbl_bpum.kelurahan', 'right');
-        $this->db->where('kecamatan', $kec);
-        $this->db->group_by('namakel');
-        $this->db->order_by('iddesa');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
-    public function getDataExport($kec)
-    {
-        $this->db->where('pekerjaan', $kec);
-        return $this->db->get($this->table)->result_array();
-    }
+    
 }
