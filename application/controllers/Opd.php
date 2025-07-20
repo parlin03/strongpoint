@@ -22,18 +22,15 @@ class Opd extends CI_Controller
 		$data['title'] = ucwords($data['opd']);
 		$data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
 
-		// $this->session->set_userdata('opd', urldecode($opd));
 		$this->session->set_flashdata('opd', $data['opd']);
 		$data['summary'] = $this->opd_model->getDataSummary($data['opd']);
-		$data['bidang'] = $this->db->query("SELECT bidang FROM opd WHERE opd = '" . $data['opd'] . "' GROUP by bidang;")->num_rows();
-		$data['perusahaan'] = $this->db->query("SELECT perusahaan FROM opd WHERE opd = '" . $data['opd'] . "' GROUP by perusahaan;")->num_rows();
-		$data['merk'] = $this->db->query("SELECT Merk FROM opd WHERE opd = '" . $data['opd'] . "'  GROUP by Merk")->num_rows();
-		$data['shu'] = $this->db->query("SELECT shu FROM opd WHERE opd = '" . $data['opd'] . "' GROUP by `shu` ")->num_rows();
-		$data['nilai_shu'] = $this->db->query("SELECT nilai_shu FROM `opd` WHERE opd = '" . $data['opd'] . "' GROUP by `nilai_shu` ")->num_rows();
-		$data['ecatalog'] = $this->db->query("SELECT ecatalog FROM `opd` WHERE opd = '" . $data['opd'] . "' GROUP by `ecatalog` ")->num_rows();
-		// var_dump($data['merk']);
-		// var_dump($this->db->last_query());
-		// die();
+		$data['bidang'] = $this->opd_model->checkBidang($data['opd']);
+		$data['perusahaan'] = $this->opd_model->checkPerusahaan($data['opd']);
+		$data['merk'] = $this->opd_model->checkMerk($data['opd']);
+		$data['shu'] = $this->opd_model->checkShu($data['opd']);
+		$data['nilai_shu'] = $this->opd_model->checkNilaiShu($data['opd']);
+		$data['ecatalog'] = $this->opd_model->checkEcatalog($data['opd']);
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/sidebar', $data);
 		$this->load->view('templates/topbar', $data);
@@ -45,8 +42,6 @@ class Opd extends CI_Controller
 	{
 		header('Content-Type: application/json');
 		$opd = urldecode($this->session->flashdata('opd'));
-		// var_dump($opd);
-		// die();
 		$graph = $this->opd_model->getDataGraph($opd);
 
 		$rows = array();
@@ -61,11 +56,15 @@ class Opd extends CI_Controller
 	public function ajax_list()
 	{
 		header('Content-Type: application/json');
-		// $opd = urldecode($this->uri->segment(3));
-		// $opd = urldecode($this->session->flashdata('opd'));
 		$list = $this->opd_model->get_datatables();
 		$data = array();
 		$no = $this->input->post('start');
+		$bidang = $this->opd_model->checkBidang($this->session->flashdata('opd'));
+		$perusahaan = $this->opd_model->checkPerusahaan($this->session->flashdata('opd'));
+		$merk = $this->opd_model->checkMerk($this->session->flashdata('opd'));
+		$shu = $this->opd_model->checkShu($this->session->flashdata('opd'));
+		$nilai_shu = $this->opd_model->checkNilaiShu($this->session->flashdata('opd'));
+		$ecatalog = $this->opd_model->checkEcatalog($this->session->flashdata('opd'));
 		//looping data mahasiswa
 		foreach ($list as $list) {
 			$no++;
@@ -74,16 +73,34 @@ class Opd extends CI_Controller
 			$row[] =  $no;
 			$row[] = $list->pekerjaan;
 			$row[] = $list->jenis_pekerjaan;
-			$row[] = $list->bidang;
-			$row[] = $list->perusahaan;
-			$row[] = $list->Merk;
+
+			if ($bidang == true) {
+				$row[] = $list->bidang;
+			}
+			if ($perusahaan == true) {
+				$row[] = $list->perusahaan;
+			}
+			if ($merk == true) {
+				$row[] = $list->Merk;
+			}
+			// $row[] = $list->perusahaan;
+			// $row[] = $list->Merk;
 			$row[] = $list->pagu_anggaran;
 			$row[] = $list->ppn;
 			$row[] = $list->ppn_pph;
 			$row[] = $list->rela_cost;
-			$row[] = $list->shu;
-			$row[] = $list->nilai_shu;
-			$row[] = '<a href="' . $list->ecatalog . '">' . $list->ecatalog . '</a>';
+			if ($shu == true) {
+				$row[] = $list->shu;
+			}
+			if ($nilai_shu == true) {
+				$row[] = $list->nilai_shu;
+			}
+			if ($ecatalog == true) {
+				$row[] = '<a href="' . $list->ecatalog . '">' . $list->ecatalog . '</a>';
+			}
+			// $row[] = $list->shu;
+			// $row[] = $list->nilai_shu;
+			// $row[] = '<a href="' . $list->ecatalog . '">' . $list->ecatalog . '</a>';
 			$row[] = $list->pic;
 			$row[] =  '<a class="btn btn-success btn-sm"><i class="fa fa-edit"></i> </a>
             <a class="btn btn-danger btn-sm "><i class="fa fa-trash"></i> </a>';

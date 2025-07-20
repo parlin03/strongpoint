@@ -106,6 +106,56 @@ class M_opd extends CI_Model
 		$this->db->where($fwhere);
 		return $this->db->count_all_results();
 	}
+
+	####################################################################
+	public function checkBidang($opd)
+	{
+		$column = 'bidang';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $$opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+
+	public function checkPerusahaan($opd)
+	{
+		$column = 'perusahaan';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+
+	public function checkMerk($opd)
+	{
+		$column = 'Merk';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+
+	public function checkShu($opd)
+	{
+		$column = 'shu';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+	
+	public function checkNilaiShu($opd)
+	{
+		$column = 'nilai_shu';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+
+	public function checkEcatalog($opd)
+	{	
+		$column = 'ecatalog';
+		$data = $this->db->query("SELECT " . $column . " FROM opd WHERE opd = '" . $opd . "' GROUP by " . $column . ";")->num_rows();
+
+		return $data > 1 ? true : false;
+	}
+
 	##########################################
 	public function getDataGraph($opd)
 	{
@@ -133,66 +183,65 @@ class M_opd extends CI_Model
 
 
 	####################################################################
-	 public function getDataGraphPekerjaan()
-    {
-        $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
-        $this->db->from($this->table);
-        $this->db->group_by('pekerjaan');
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function getDataGraphPekerjaan()
+	{
+		$this->db->select('pekerjaan, sum(pagu_anggaran) as total');
+		$this->db->from($this->table);
+		$this->db->group_by('pekerjaan');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-    public function getDataSummaryPekerjaan()
-    {
-        $this->db->select('pekerjaan, sum(pagu_anggaran) as total');
-        $this->db->from($this->table);
-        // $this->db->join('pekerjaan', 'pekerjaan.pekerjaan=list_pekerjaan.pekerjaan');
-        $this->db->group_by('pekerjaan');
-        $this->db->order_by('id');
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function getDataSummaryPekerjaan()
+	{
+		$this->db->select('pekerjaan, sum(pagu_anggaran) as total');
+		$this->db->from($this->table);
+		// $this->db->join('pekerjaan', 'pekerjaan.pekerjaan=list_pekerjaan.pekerjaan');
+		$this->db->group_by('pekerjaan');
+		$this->db->order_by('id');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-    public function getDataGraphOpd()
-    {
-        $this->db->select('opd, sum(pagu_anggaran) as total');
-        $this->db->from($this->table);
-        $this->db->group_by('opd');
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function getDataGraphOpd()
+	{
+		$this->db->select('opd, sum(pagu_anggaran) as total');
+		$this->db->from($this->table);
+		$this->db->group_by('opd');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-    public function getDataSummaryOpd()
-    {
-        $this->db->select('opd, sum(pagu_anggaran) as total, 
+	public function getDataSummaryOpd()
+	{
+		$this->db->select('opd, sum(pagu_anggaran) as total, 
         (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
-        $this->db->from($this->table);
-        // $this->db->join('opd', 'opd.opd=list_pekerjaan.opd');
-        $this->db->group_by('opd');
-        $this->db->order_by('id');
-        $query = $this->db->get();
-        return $query->result();
-    }
+		$this->db->from($this->table);
+		// $this->db->join('opd', 'opd.opd=list_pekerjaan.opd');
+		$this->db->group_by('opd');
+		$this->db->order_by('id');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-    public function getDataGraphPerusahaan()
-    {
-        $this->db->select('perusahaan, sum(pagu_anggaran) as total');
-        $this->db->from($this->table);
-        $this->db->group_by('perusahaan');
-        $query = $this->db->get();
-        return $query->result();
-    }
+	public function getDataGraphPerusahaan()
+	{
+		$this->db->select('perusahaan, sum(pagu_anggaran) as total');
+		$this->db->from($this->table);
+		$this->db->group_by('perusahaan');
+		$query = $this->db->get();
+		return $query->result();
+	}
 
-    public function getDataSummaryPerusahaan()
-    {
-        $this->db->select('perusahaan, sum(pagu_anggaran) as total, 
+	public function getDataSummaryPerusahaan()
+	{
+		$this->db->select('perusahaan, sum(pagu_anggaran) as total, 
         (sum(pagu_anggaran) / SUM(sum(pagu_anggaran)) OVER ()) * 100 AS percentage');
-        $this->db->from($this->table);
-        // $this->db->join('perusahaan', 'perusahaan.perusahaan=list_pekerjaan.perusahaan');
-        $this->db->group_by('perusahaan');
-        $this->db->order_by('id');
-        $query = $this->db->get();
-        return $query->result();
-    }
-
+		$this->db->from($this->table);
+		// $this->db->join('perusahaan', 'perusahaan.perusahaan=list_pekerjaan.perusahaan');
+		$this->db->group_by('perusahaan');
+		$this->db->order_by('id');
+		$query = $this->db->get();
+		return $query->result();
+	}
 }

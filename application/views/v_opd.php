@@ -112,19 +112,31 @@
 							<table id="table_opd" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>No</th>
 										<th>Pekerjaan</th>
 										<th>Jenis Pekerjaan</th>
-										<th>Bidang</th>
-										<th>Perusahaan</th>
-										<th>Merk</th>
+										<?php if ($bidang == true) : ?>
+											<th>Bidang</th>
+										<?php endif; ?>
+										<?php if ($perusahaan == true) : ?>
+											<th>Perusahaan</th>
+										<?php endif; ?>
+										<?php if ($merk == true) : ?>
+											<th>Merk</th>
+										<?php endif; ?>
 										<th>Pagu Anggaran</th>
 										<th>PPN</th>
 										<th>PPN+PPH</th>
 										<th>Rela Cost</th>
-										<th>SHU</th>
-										<th>Nilai SHU</th>
-										<th>eCatalog</th>
+										<?php if ($shu == true) : ?>
+											<th>SHU</th>
+										<?php endif; ?>
+										<?php if ($nilai_shu == true) : ?>
+											<th>Nilai SHU</th>
+										<?php endif; ?>
+										<?php if ($ecatalog == true) : ?>
+											<th>eCatalog</th>
+										<?php endif; ?>
 										<th>PIC</th>
 										<th>Action</th>
 									</tr>
@@ -233,51 +245,7 @@
 			"lengthChange": false,
 			"autoWidth": false,
 			"processing": true,
-			"columnDefs": [
-				<?php if (($bidang > 1)) {
-					echo  "{ visible: true,
-						targets: [3] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [3] },";
-				} ?>
-				<?php if (($perusahaan > 1)) {
-					echo  "{ visible: true,
-						targets: [4] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [4] },";
-				} ?>
-				<?php if (($merk > 1)) {
-					echo  "{ visible: true,
-						targets: [5] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [5] },";
-				} ?>
-				<?php if (($shu > 1)) {
-					echo  "{ visible: true,
-						targets: [10] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [10] },";
-				} ?>
-				<?php if (($nilai_shu > 1)) {
-					echo  "{ visible: true,
-						targets: [11] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [11] },";
-				} ?>
-				<?php if (($ecatalog > 1)) {
-					echo  "{ visible: true,
-						targets: [12] },";
-				} else {
-					echo  "{ visible: false,
-						targets: [12] },";
-				} ?>
 
-			],
 			"order": [],
 			"ajax": {
 				//panggil method ajax list dengan ajax
