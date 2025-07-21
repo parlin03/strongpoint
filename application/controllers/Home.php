@@ -6,6 +6,7 @@ class Home extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->session->set_userdata(['access' => '2']);
 		is_logged_in();
 		$this->load->library('session');
 		$this->load->model('M_opd', 'opd_model');

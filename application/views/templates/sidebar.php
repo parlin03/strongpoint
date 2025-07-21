@@ -37,6 +37,13 @@
 				</div>
 				<div class="user-panel mt-2 pb-2 mb-2 ">
 					<li class="nav-item has-treeview menu-open">
+						<a class="nav-link" href="<?= base_url('opd/rekapitulasi'); ?>">
+							<!-- <i class="fas fa-building fa-fw"></i> -->
+							<i class="fas fa-city"></i>
+
+							<span>REKAPITULASI ANGGARAN</span></a>
+					</li>
+					<li class="nav-item has-treeview menu-open">
 						<a class="nav-link" href="">
 							<i class="fas fa-building fa-fw"></i>
 							<span>OPD</span></a>

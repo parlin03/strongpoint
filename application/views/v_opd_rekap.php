@@ -31,21 +31,21 @@
 										<div class="panel panel-primary">
 											<div class="panel-body">
 												<div class="row">
-													<div class="col-md-8">
+													<div class="col-md-12">
 
-														<div id="mygraph" style="min-width: 400px; height: 480px; margin: 0 auto"></div>
-													</div>
-													<div class="col-md-4">
+
 														<div class="table-responsive">
 															<table class="table table-bordered table-striped table-hover text-dark  ">
 																<thead class="text-center">
-																	<th class="border">Pekerjaan</th>
-																	<th class="border">Jumlah</th>
+																	<th class="border">No</th>
+																	<th class="border">Kegiatan</th>
+																	<th class="border">Pagu Anggaran</th>
+																	<th class="border">Real Cost</th>
 																	<!-- <th class="border">REKOMENDASI</th> -->
 																	<!-- <th class="border">Action</th> -->
 																</thead>
 																<tbody>
-																	<?php if (empty($summary)) : ?>
+																	<?php if (empty($rekap)) : ?>
 																		<tr>
 																			<td colspan="7">
 																				<div class="alert alert-danger" role="alert">
@@ -55,12 +55,18 @@
 																		</tr>
 																	<?php endif; ?>
 																	<?php
+																	$no = 0;
 																	$jtotal = 0;
-																	foreach ($summary as $row) : ?>
+																	foreach ($rekap as $row) :
+																		$no++;
+																	?>
 																		<tr class="text-center">
 
-																			<td class="border"><a href="<?= base_url('opd/') . strtolower($row->pekerjaan); ?>"><?= $row->pekerjaan; ?></a></td>
-																			<td class="border"><?= "Rp " . number_format("$row->total", 0, ",", "."); ?></td>
+																			<td class="border"><?= $no; ?></td>
+																			<td class="border"><a href="<?= base_url('opd/instansi/') . strtolower($row->opd); ?>"><?= $row->opd; ?></a></td>
+																			<td class="border"><?= "Rp " . number_format("$row->total", 2, ",", "."); ?></td>
+																			<?php $real_cost = $row->total * (1 - 0.125); ?>
+																			<td class="border"><?= "Rp " . number_format($real_cost, 2, ",", "."); ?></td>
 
 																		</tr>
 																		<?php $jtotal += $row->total; ?>
@@ -73,17 +79,17 @@
 																</tbody>
 																<tfoot>
 																	<tr class="text-center">
-																		<th class="border">Total</th>
+																		<th class="border" colspan="2">Total</th>
 																		<th class="border"><?= "Rp " . number_format("$jtotal", 2, ",", "."); ?></th>
-																	</tr>
-																	<tr class="text-center">
-																		<th class="border">Pajak</th>
-																		<th class="border"><?= "Rp " . number_format("$pajak", 2, ",", "."); ?></th>
-																	</tr>
-																	<tr class="text-center">
-																		<th class="border">Real Cost</th>
 																		<th class="border"><?= "Rp " . number_format("$real_cost", 2, ",", "."); ?></th>
 																	</tr>
+																	<!-- <tr class="text-center">
+																		<th class="border">Pajak</th>
+																		<th class="border"><?= "Rp " . number_format("$pajak", 2, ",", "."); ?></th>
+																	</tr> -->
+																	<!-- <tr class="text-center">
+																		<th class="border">Real Cost</th>
+																	</tr> -->
 																</tfoot>
 															</table>
 														</div>
@@ -95,64 +101,6 @@
 								</div>
 							</div>
 						</div>
-					</div>
-					<!-- /.card -->
-				</div>
-				<!-- /.col -->
-			</div>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-12">
-					<div class="card">
-						<!-- <div class="card-header">
-                                    <h3 class="card-title">DataTable with default features</h3>
-                                </div> -->
-						<!-- /.card-header -->
-						<div class="card-body">
-							<table id="table_opd" class="table  table-striped align-middle">
-								<thead>
-									<tr>
-										<th rowspan="2"  class="text-center align-middle">No</th>
-										<th rowspan="2"  class="text-center align-middle">Pekerjaan</th>
-										<th rowspan="2" class="text-center align-middle">Jenis Pekerjaan</th>
-										<?php if ($bidang == true) : ?>
-											<th rowspan="2" class="text-center align-middle">Bidang</th>
-										<?php endif; ?>
-										<?php if ($perusahaan == true) : ?>
-											<th rowspan="2" class="text-center align-middle">Perusahaan</th>
-										<?php endif; ?>
-										<?php if ($merk == true) : ?>
-											<th rowspan="2" class="text-center align-middle">Merk</th>
-										<?php endif; ?>
-										<?php if ($shu == true) : ?>
-											<th colspan="6"  class="text-center align-middle">Perkiraan Sementara</th>
-										<?php else : ?>
-											<th colspan="4"  class="text-center align-middle">Perkiraan Sementara</th>
-										<?php endif; ?>
-										<?php if ($ecatalog == true) : ?>
-											<th rowspan="2" class="text-center align-middle">eCatalog</th>
-										<?php endif; ?>
-										<th rowspan="2" class="text-center align-middle">PIC</th>
-										<th rowspan="2" class="text-center align-middle">Action</th>
-									</tr>
-									<tr>
-										<th class="text-center align-middle">Pagu Anggaran</th>
-										<th class="text-center align-middle">PPN</th>
-										<th class="text-center align-middle">PPN+PPH</th>
-										<th class="text-center align-middle">Real Cost</th>
-										<?php if ($shu == true) : ?>
-											<th class="text-center align-middle">SHU</th>
-										<?php endif; ?>
-										<?php if ($nilai_shu == true) : ?>
-											<th class="text-center align-middle">Nilai SHU</th>
-										<?php endif; ?>
-									</tr>
-								</thead>
-
-
-							</table>
-						</div>
-						<!-- /.card-body -->
 					</div>
 					<!-- /.card -->
 				</div>
@@ -195,68 +143,15 @@
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="<?php echo base_url(); ?>assets/dist/js/demo.js"></script> -->
 <!-- Page specific script -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		var options = {
-			chart: {
-				renderTo: 'mygraph',
-				plotBackgroundColor: null,
-				plotBorderWidth: null,
-				plotShadow: false
-			},
-			accessibility: {
-				enabled: false
-			},
-			title: {
-				text: 'Sebaran Pekerjaan ' + '<?= $title; ?>'
-			},
-			tooltip: {
-				formatter: function() {
-					return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
-				}
-			},
-			plotOptions: {
-				pie: {
-					allowPointSelect: true,
-					cursor: 'pointer',
-					dataLabels: {
-						enabled: true,
-						color: '#000000',
-						connectorColor: 'green',
-						formatter: function() {
-							return '<b>' + this.point.name + '</b>: ' + Highcharts.numberFormat(this.percentage, 2) + ' % ';
-						}
-					},
-					showInLegend: true
-				}
-			},
-			series: [{
-				type: 'pie',
-				name: 'Browser share',
-				data: []
-			}]
-		}
 
-		$.getJSON("<?php echo site_url('opd/Graph_list'); ?>", function(json) {
-			options.series[0].data = json;
-			chart = new Highcharts.Chart(options);
-		});
-
-	});
-</script>
 
 <script>
 	$(function() {
-		$("#table_opd").DataTable({
-			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": false,
-			"processing": true,
+		$("#table_opd_rekap").DataTable({
 
-			"order": [],
 			"ajax": {
 				//panggil method ajax list dengan ajax
-				"url": <?php echo json_encode(base_url()); ?> + "opd/ajax_list",
+				"url": <?php echo json_encode(base_url()); ?> + "opd/rekap_list",
 				"type": "POST"
 			},
 			"buttons": [{
@@ -280,11 +175,8 @@
 				"titleAttr": 'Print',
 				"action": newexportaction
 			}],
-			"dom": 'Bfrtip',
-			"select": true,
-			"serverSide": true
 
-		}).buttons().container().appendTo('#table_opd_wrapper .col-md-6:eq(0)');
+		}).buttons().container().appendTo('#table_opd_rekap_wrapper .col-md-6:eq(0)');
 
 		function newexportaction(e, dt, button, config) {
 			var self = this;

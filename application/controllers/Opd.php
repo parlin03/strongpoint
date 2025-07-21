@@ -9,11 +9,26 @@ class Opd extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		// is_logged_in();
+		$this->session->set_userdata(['access' => '2']);
+		is_logged_in();
 		$this->load->library('session');
 		$this->load->model('M_opd', 'opd_model');
 	}
 
+	public function rekapitulasi()
+	{
+		$data['menu'] = '';
+		$data['title'] = 'REKAPITULASI ANGGARAN KEGIATAN TAHUN 2025';
+		$data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array(); //arraynya sebaris
+
+		$data['rekap'] = $this->opd_model->getDataRekap();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/sidebar', $data);
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('v_opd_rekap', $data);
+		$this->load->view('templates/footer');
+	}
 
 	public function instansi($opd)
 	{
@@ -52,7 +67,32 @@ class Opd extends CI_Controller
 		print json_encode($rows, JSON_NUMERIC_CHECK);
 	}
 
+	public function rekap_list()
+	{
+		header('Content-Type: application/json');
+		$list = $this->opd_model->getDataRekap();
+		$data = array();
+		$no = 0;
 
+		//looping data mahasiswa
+		foreach ($list as $list) {
+			$no++;
+			$row = array();
+			//row pertama akan kita gunakan untuk btn edit dan delete
+			$row[] =  $no;
+			$row[] = $list->opd;
+			$row[] = $list->total;
+			$row[] = $list->total * (1 - 0.125);
+			$data[] = $row;
+		}
+
+		$output = array(
+
+			"data" => $data,
+		);
+		//output to json format
+		$this->output->set_output(json_encode($output));
+	}
 	public function ajax_list()
 	{
 		header('Content-Type: application/json');

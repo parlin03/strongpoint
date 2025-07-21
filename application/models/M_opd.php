@@ -107,7 +107,18 @@ class M_opd extends CI_Model
 		return $this->db->count_all_results();
 	}
 
+
 	####################################################################
+public function getDataRekap()
+	{
+		$this->db->select('opd, sum(pagu_anggaran) as total');
+		$this->db->from($this->table);
+		$this->db->group_by('opd');
+		$this->db->order_by('id');
+		$query = $this->db->get();
+		return $query->result();
+	}
+	############################################################
 	public function checkBidang($opd)
 	{
 		$column = 'bidang';
@@ -139,7 +150,7 @@ class M_opd extends CI_Model
 
 		return $data > 1 ? true : false;
 	}
-	
+
 	public function checkNilaiShu($opd)
 	{
 		$column = 'nilai_shu';
